@@ -35,11 +35,6 @@ vim.cmd([[
   " autocmd BufWritePost *.bib,*.tex,*.sty silent execute '!git add %' | silent execute '!git commit -m "Auto commit for %"' | silent execute '!git push'
   " autocmd BufRead *.bib,*.tex,*.sty execute '!git pull'
   " augroup END
-
-  let g:UltiSnipsExpandTrigger       = '<Tab>'
-  " let g:UltiSnipsJumpForwardTrigger  = '<Tab>'
-  " let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-
 ]])
 
 vim.g.vimtex_compiler_latexmk = {
