@@ -72,6 +72,8 @@ require('which-key').register({
 require('mason').setup()
 require('mason-lspconfig').setup()
 
+local lspconfig = require('lspconfig')
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -98,6 +100,12 @@ local mason_servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
+  omnisharp = {
+    root_dir = function(filename)
+      return lspconfig.util.root_pattern("*.sln", "*.csproj", "omnisharp.json", "function.json", ".git")(filename) or vim.fn.getcwd()
+    end
+  },
+  jsonnet_ls = {},
 }
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
@@ -110,8 +118,6 @@ local mason_lspconfig = require 'mason-lspconfig'
 mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(mason_servers),
 }
-
-local lspconfig = require('lspconfig')
 
 lspconfig.nushell.setup {
   default_config = {
